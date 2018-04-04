@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>TODO APP</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-searchbar
+  [(ngModel)]="myInput"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
+	<ion-label class="headerlabel"><b>Todo List</b></ion-label>
+	<ion-list no-lines>
+		<ion-item ion-item *ngFor="let item of task_list" >
+			<ion-label>{{item.tododetails}}</ion-label>
+			<ion-checkbox color="dark" ng-model={item.is_Complete} (click)=markSelectItem(item.list_id) ></ion-checkbox>		
+		</ion-item>
+  </ion-list>
+  <ion-fab right bottom>
+    <button (click)=addNewItem() ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-fab left bottom>
+  <button ion-fab mini color="secondary" (click)=permChangeState() ><ion-icon name="checkmark"></ion-icon></button>
+</ion-fab>
+</ion-content>
